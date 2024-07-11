@@ -11,3 +11,7 @@ javac *.java
 ```
 java -classpath ".:../lib/sqlite-jdbc-3.46.0.0.jar:../lib/slf4j-api-2.0.13.jar:../lib/slf4j-simple-2.0.13.jar" ファイル名
 ```
+ex.
+```
+java -classpath ".:../lib/sqlite-jdbc-3.46.0.0.jar:../lib/slf4j-api-2.0.13.jar:../lib/slf4j-simple-2.0.13.jar" SelectSample
+```
