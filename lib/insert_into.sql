@@ -3,8 +3,8 @@ INSERT INTO Courses (Name) VALUES ('プログラミング第一');
 INSERT INTO Courses (Name) VALUES ('データベースシステム');
 
 -- Teachers テーブルにデータを挿入
-INSERT INTO Teachers (Name) VALUES ('例題　名前');
-INSERT INTO Teachers (Name) VALUES ('氏名　例えば');
+INSERT INTO Teachers (Name) VALUES ('例題 名前');
+INSERT INTO Teachers (Name) VALUES ('氏名 例えば');
 
 -- Students テーブルにデータを挿入
 INSERT INTO Students (Name) VALUES ('生徒 ああ');
