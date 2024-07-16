@@ -1,4 +1,3 @@
-package last;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +7,7 @@ import java.sql.Statement;
 
 public class Database {
 
-    private final String DB_NAME = "sample.db";
+    private final String DB_NAME = "../lib/sample.db";
 
     private Connection c = null;
 
@@ -39,13 +38,7 @@ public class Database {
         try{
             this.stmt.executeQuery(
                 "CREATE TABLE " + tablename +
-                """
-                (
-                id INTEGER,
-                value INTEGER,
-                description STRING
-                )
-                """);
+                "(id INTEGER,value INTEGER,description STRING)");
             this.c.commit();
         }catch (SQLException e){
            System.out.println("------------------------------------------------");
@@ -90,13 +83,7 @@ public class Database {
         try{
             this.stmt.executeUpdate(
                 "INSERT INTO " + tablename +
-                """
-                (
-                \"id\",
-                \"value\",
-                \"description\"
-                )
-                """
+                "(\"id\",\"value\",\"description\")"
                 +
                 "VALUES("
                 + id + ","
@@ -115,9 +102,7 @@ public class Database {
         try{
             this.stmt.executeUpdate(
                 "UPDATE " + tablename + " SET " +
-                """
-                description = \" updated description.\" WHERE id = 
-                """
+                "description = \" updated description.\" WHERE id = "
                 +
                 id
                 );
