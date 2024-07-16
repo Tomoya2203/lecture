@@ -1,0 +1,38 @@
+CREATE TABLE Courses (
+    CourseID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Sessions (
+    SessionID INTEGER PRIMARY KEY AUTOINCREMENT,
+    CourseID INTEGER,
+    Time VARCHAR(255),
+    Location VARCHAR(255),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+CREATE TABLE Teachers (
+    TeacherID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Students (
+    StudentID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Instructors (
+    CourseID INTEGER,
+    TeacherID INTEGER,
+    PRIMARY KEY (CourseID, TeacherID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
+);
+
+CREATE TABLE Enrollments (
+    CourseID INTEGER,
+    StudentID INTEGER,
+    PRIMARY KEY (CourseID, StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+);
