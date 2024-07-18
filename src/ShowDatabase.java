@@ -47,18 +47,7 @@ public class ShowDatabase {
         }
     }
 
-    public void readTable(int StudentID, String Table){
-        try{
-            ResultSet rs = stmt.executeQuery("SELECT * FROM " + Table +" WHERE StudentID = " + StudentID);
-            while (rs.next()) {
-                String name = rs.getString("Name"); // get data of value col.
-                System.out.println("id:" + StudentID + ", name:" + name); // print out the data.
-            }
-            rs.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
+
 
     public void ShowAll(String Table) {
         try {
@@ -156,6 +145,108 @@ public class ShowDatabase {
         }
     }
 
+    public void readTable(int ID, String Table) {
+        try {
+            String query = "";
+            
+            switch (Table.toLowerCase()) {
+                case "courseinfo":
+                    query = "SELECT Courses.CourseID, Courses.Name AS CourseName, Sessions.Time, Sessions.Location, " +
+                            "GROUP_CONCAT(Teachers.TeacherID) AS TeacherIDs, GROUP_CONCAT(Teachers.Name) AS TeacherNames " +
+                            "FROM Courses " +
+                            "JOIN Sessions ON Courses.CourseID = Sessions.CourseID " +
+                            "JOIN Instructors ON Courses.CourseID = Instructors.CourseID " +
+                            "JOIN Teachers ON Instructors.TeacherID = Teachers.TeacherID " +
+                            "WHERE Courses.CourseID = " + ID +
+                            " GROUP BY Courses.CourseID, Sessions.SessionID";
+                    break;
+                case "students":
+                    query = "SELECT * FROM Students WHERE StudentID = " + ID;
+                    break;
+                case "teachers":
+                    query = "SELECT * FROM Teachers WHERE TeacherID = " + ID;
+                    break;
+                case "courses":
+                    query = "SELECT * FROM Courses WHERE CourseID = " + ID;
+                    break;
+                case "sessions":
+                    query = "SELECT * FROM Sessions WHERE SessionID = " + ID;
+                    break;
+                case "enrollments":
+                    // For enrollments, we assume ID represents StudentID
+                    query = "SELECT * FROM Enrollments WHERE StudentID = " + ID;
+                    break;
+                case "instructors":
+                    // For instructors, we assume ID represents TeacherID
+                    query = "SELECT * FROM Instructors WHERE TeacherID = " + ID;
+                    break;
+                default:
+                    System.out.println("Invalid table name.");
+                    return;
+            }
+            
+            ResultSet rs = stmt.executeQuery(query);
+    
+            if (Table.equalsIgnoreCase("CourseInfo")) {
+                while (rs.next()) {
+                    int CourseID = rs.getInt("CourseID");
+                    String CourseName = rs.getString("CourseName");
+                    int Time = rs.getInt("Time");
+                    String Location = rs.getString("Location");
+                    String TeacherIDs = rs.getString("TeacherIDs");
+                    String TeacherNames = rs.getString("TeacherNames");
+    
+                    System.out.println("CourseID: " + CourseID + ", CourseName: " + CourseName +
+                            ", Time: " + Time + ", Location: " + Location +
+                            ", TeacherIDs: " + TeacherIDs + ", TeacherNames: " + TeacherNames);
+                }
+            } else if (Table.equalsIgnoreCase("Students")) {
+                while (rs.next()) {
+                    int StudentID = rs.getInt("StudentID");
+                    String name = rs.getString("Name");
+                    System.out.println("StudentID:" + StudentID + ", name:" + name);
+                }
+            } else if (Table.equalsIgnoreCase("Teachers")) {
+                while (rs.next()) {
+                    int TeacherID = rs.getInt("TeacherID");
+                    String name = rs.getString("Name");
+                    System.out.println("TeacherID:" + TeacherID + ", name:" + name);
+                }
+            } else if (Table.equalsIgnoreCase("Courses")) {
+                while (rs.next()) {
+                    int CourseID = rs.getInt("CourseID");
+                    String name = rs.getString("Name");
+                    System.out.println("CourseID:" + CourseID + ", name:" + name);
+                }
+            } else if (Table.equalsIgnoreCase("Sessions")) {
+                while (rs.next()) {
+                    int SessionID = rs.getInt("SessionID");
+                    String CourseID = rs.getString("CourseID");
+                    int Time = rs.getInt("Time");
+                    String Location = rs.getString("Location");
+                    System.out.println("SessionID:" + SessionID + ", CourseID:" + CourseID + ", Time:" + Time + ", Location:" + Location);
+                }
+            } else if (Table.equalsIgnoreCase("Enrollments")) {
+                while (rs.next()) {
+                    String CourseID = rs.getString("CourseID");
+                    String StudentID = rs.getString("StudentID");
+                    System.out.println("CourseID:" + CourseID + ", StudentID:" + StudentID);
+                }
+            } else if (Table.equalsIgnoreCase("Instructors")) {
+                while (rs.next()) {
+                    String CourseID = rs.getString("CourseID");
+                    String TeacherID = rs.getString("TeacherID");
+                    System.out.println("CourseID:" + CourseID + ", TeacherID:" + TeacherID);
+                }
+            }
+            
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
 
     public void insertData(String tablename,int id, int value, String description){
         try{
@@ -216,7 +307,7 @@ public class ShowDatabase {
         ShowDatabase db = new ShowDatabase();
 
         String tablename = "table1";
-        //db.readTable(2,"Students");
+        db.readTable(2,"Students");
         //db.readTable(1,"Enrollments");
 
         /* 

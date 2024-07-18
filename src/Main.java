@@ -23,7 +23,7 @@ public class Main {
         Main main = new Main();
         Scanner scanner = new Scanner(System.in);
         while(true){
-            System.out.println("Select an action: show, add, delete, edit, exit"); // enter case word
+            System.out.println("Select an action: show, search, add, delete, edit, exit"); // enter case word
             String command = scanner.nextLine();
 
             switch (command.toLowerCase()) {
