@@ -5,21 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Delete {
-//    private final String DB_NAME = "../lib/sample.db";
-//    private Connection c = null;
     private Statement stmt = null;
-
-//    // constructor
-//    public Delete(){
-//        try{
-//            Class.forName("org.sqlite.JDBC");
-//            this.c = DriverManager.getConnection("jdbc:sqlite:" + this.DB_NAME);
-//
-//            this.stmt = c.createStatement();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//    }
 
     public Delete(Statement stmt){
         this.stmt = stmt;
@@ -84,21 +70,4 @@ public class Delete {
             e.printStackTrace();
         }
     }
-
-//    public void closeConnection(){
-//        try {
-//            if (this.c != null) {
-//                this.c.close();
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//    }
-
-//    public static void main(String[] args) throws SQLException {
-//        Delete db = new Delete();
-//        db.delEnrollment(1, 1);
-//
-//        db.closeConnection();
-//    }
 }
