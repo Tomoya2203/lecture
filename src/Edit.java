@@ -5,20 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Edit {
-//    private final String DB_NAME = "../lib/sample.db";
-//    private Connection c = null;
     private Statement stmt = null;
-
-//    // constructor
-//    public Edit(){
-//        try{
-//            Class.forName("org.sqlite.JDBC");
-//            this.c = DriverManager.getConnection("jdbc:sqlite:" + this.DB_NAME);
-//            this.stmt = c.createStatement();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//    }
 
     public Edit(Statement stmt){
         this.stmt = stmt;
@@ -64,12 +51,4 @@ public class Edit {
             e.printStackTrace();
         }
     }
-
-//    public static void main(String[] args) throws SQLException {
-//        Edit db = new Edit();
-//        db.updateStudent(1, "生徒A");
-//        db.updateTeacher(1, "先生A");
-//        db.updateCourse(1, "科目A");
-//        db.updateSession(1, 1, "日曜4限", "Room 101");
-//    }
 }
