@@ -1,8 +1,8 @@
-import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class Main {
     private final String DB_NAME = "../lib/sample.db";
@@ -27,10 +27,6 @@ public class Main {
             String command = scanner.nextLine();
 
             switch (command.toLowerCase()) {
-                // case "show":
-                //     Show show = new Show(stmt);
-                //     show.showStudents();
-                //     break;
                 case "add":
                 System.out.println("Select an action: addstudent, addteacher, " +
                     "addcourse, addsession, addinstructor, addenrollment");
@@ -72,6 +68,54 @@ public class Main {
                         default:
                             System.out.println("Invalid command. Please enter again.");
                     }
+                    break;
+                case "show":
+                    ShowDatabase db = new ShowDatabase();
+
+                    String[] Table = {"CourseInfo","Students","Teachers","Courses","Instructors","Sessions","Enrollments"};
+                    // for(int i=0;i<7;i++){
+                    //     System.out.println(Table[i]);
+                    //     db.ShowAll(Table[i]);
+                    // }
+
+                    System.out.println("Select table: CourseInfo, Students, " +
+                            "Teachers, Courses,Instructor, Sessions, Enrollments ");
+
+                    String ShowCommand = scanner.nextLine();
+                    switch (ShowCommand.toLowerCase()) {
+                        case "courseinfo":
+                            System.out.println(Table[0]);
+                            db.ShowAll(Table[0]);
+                            break;
+                        case "students":
+                            System.out.println(Table[1]);
+                            db.ShowAll(Table[1]);
+                            break;
+                        case "teachers":
+                            System.out.println(Table[2]);
+                            db.ShowAll(Table[2]);
+                            break;
+                        case "courses":
+                            System.out.println(Table[3]);
+                            db.ShowAll(Table[3]);
+                            break;
+                        case "instructors":
+                            System.out.println(Table[4]);
+                            db.ShowAll(Table[4]);
+                            break;
+                        case "sessions":
+                            System.out.println(Table[5]);
+                            db.ShowAll(Table[5]);
+                            break;
+                        case "enrollments":
+                            System.out.println(Table[6]);
+                            db.ShowAll(Table[6]);
+                            break;
+                        default:
+                            System.out.println("Invalid table name.");
+                            break;
+                    }
+
                     break;
                 case "delete":
                     System.out.println("Select an action: delstudent, delteacher, " +
