@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -246,6 +247,86 @@ public class ShowDatabase {
         }
     }
     
+    public void searchTable(String column, String searchValue, String Table) {
+        try {
+            String query;
+            if (Table.equals("CourseInfo")) {
+                query = "SELECT Courses.CourseID, Courses.Name AS CourseName, Sessions.Time, Sessions.Location, " +
+                        "GROUP_CONCAT(Teachers.TeacherID) AS TeacherIDs, GROUP_CONCAT(Teachers.Name) AS TeacherNames " +
+                        "FROM Courses " +
+                        "JOIN Sessions ON Courses.CourseID = Sessions.CourseID " +
+                        "JOIN Instructors ON Courses.CourseID = Instructors.CourseID " +
+                        "JOIN Teachers ON Instructors.TeacherID = Teachers.TeacherID " +
+                        "WHERE " + column + " LIKE ? " +
+                        "GROUP BY Courses.CourseID, Sessions.SessionID";
+            } else {
+                query = "SELECT * FROM " + Table + " WHERE " + column + " LIKE ?";
+            }
+
+            PreparedStatement pstmt = c.prepareStatement(query);
+            pstmt.setString(1, "%" + searchValue + "%");
+
+            // クエリの実行
+            ResultSet rs = pstmt.executeQuery();
+
+            // 結果セットの処理
+            if (Table.equals("Courses")) {
+                while (rs.next()) {
+                    int CourseID = rs.getInt("CourseID");
+                    String Name = rs.getString("Name");
+                    System.out.println("CourseID: " + CourseID + ", Name: " + Name);
+                }
+            } else if (Table.equals("Sessions")) {
+                while (rs.next()) {
+                    int SessionID = rs.getInt("SessionID");
+                    int CourseID = rs.getInt("CourseID");
+                    String Time = rs.getString("Time");
+                    String Location = rs.getString("Location");
+                    System.out.println("SessionID: " + SessionID + ", CourseID: " + CourseID + ", Time: " + Time + ", Location: " + Location);
+                }
+            } else if (Table.equals("Teachers")) {
+                while (rs.next()) {
+                    int TeacherID = rs.getInt("TeacherID");
+                    String Name = rs.getString("Name");
+                    System.out.println("TeacherID: " + TeacherID + ", Name: " + Name);
+                }
+            } else if (Table.equals("Students")) {
+                while (rs.next()) {
+                    int StudentID = rs.getInt("StudentID");
+                    String Name = rs.getString("Name");
+                    System.out.println("StudentID: " + StudentID + ", Name: " + Name);
+                }
+            } else if (Table.equals("Instructors")) {
+                while (rs.next()) {
+                    int CourseID = rs.getInt("CourseID");
+                    int TeacherID = rs.getInt("TeacherID");
+                    System.out.println("CourseID: " + CourseID + ", TeacherID: " + TeacherID);
+                }
+            } else if (Table.equals("Enrollments")) {
+                while (rs.next()) {
+                    int CourseID = rs.getInt("CourseID");
+                    int StudentID = rs.getInt("StudentID");
+                    System.out.println("CourseID: " + CourseID + ", StudentID: " + StudentID);
+                }
+            } else if (Table.equals("CourseInfo")) {
+                while (rs.next()) {
+                    int CourseID = rs.getInt("CourseID");
+                    String CourseName = rs.getString("CourseName");
+                    String Time = rs.getString("Time");
+                    String Location = rs.getString("Location");
+                    String TeacherIDs = rs.getString("TeacherIDs");
+                    String TeacherNames = rs.getString("TeacherNames");
+                    System.out.println("CourseID: " + CourseID + ", CourseName: " + CourseName + ", Time: " + Time + ", Location: " + Location + ", TeacherIDs: " + TeacherIDs + ", TeacherNames: " + TeacherNames);
+                }
+            }
+
+            // リソースのクローズ
+            rs.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void insertData(String tablename,int id, int value, String description){
@@ -307,7 +388,9 @@ public class ShowDatabase {
         ShowDatabase db = new ShowDatabase();
 
         String tablename = "table1";
-        db.readTable(2,"Students");
+        db.searchTable("CourseID","1","Courses");
+        db.searchTable("Courses.CourseID","1","CourseInfo");
+        //db.readTable(2,"Students");
         //db.readTable(1,"Enrollments");
 
         /* 
@@ -318,6 +401,7 @@ public class ShowDatabase {
         db.ShowAll("Sessions");
         db.ShowAll("Enrollments");
         */
+
         String[] Table = {"CourseInfo","Students","Teachers","Courses","Instructors","Sessions","Enrollments"};
         for(int i=0;i<7;i++){
             System.out.println(Table[i]);
