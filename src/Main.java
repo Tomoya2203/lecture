@@ -27,16 +27,52 @@ public class Main {
             String command = scanner.nextLine();
 
             switch (command.toLowerCase()) {
-//                case "show":
-//                    Show show = new Show(stmt);
-//                    show.showStudents();
-//                    break;
-//                case "add":
-//                    System.out.println("enter student name you want to add:");
-//                    String nameToAdd = scanner.nextLine();
-//                    Add add = new Add(stmt);
-//                    add.addStudent(nameToAdd);
-//                    break;
+                // case "show":
+                //     Show show = new Show(stmt);
+                //     show.showStudents();
+                //     break;
+                case "add":
+                System.out.println("Select an action: addstudent, addteacher, " +
+                    "addcourse, addsession, addinstructor, addenrollment");
+                    String nameToAdd = scanner.nextLine();
+                    Add add = new Add(conn);
+                    String keyString;
+                    switch(nameToAdd.toLowerCase()){
+                        case "addstudent":
+                            System.out.println("input: <StudentName>");
+                            keyString = scanner.nextLine();
+                            System.out.println(keyString);
+                            add.addStudent(keyString);
+                            break;
+                        case "addteacher":
+                            System.out.println("input: <TeacherName>");
+                            keyString = scanner.nextLine();
+                            add.addTeacher(keyString);
+                            break;
+                        case "addcourse":
+                            System.out.println("input: <CourseName>");
+                            keyString = scanner.nextLine();
+                            add.addCourse(keyString);
+                            break;
+                        case "addsession":
+                            System.out.println("input: <CourseID> <Time> <Location>");
+                            keyString = scanner.nextLine();
+                            add.addSession(keyString);
+                            break;
+                        case "addinstructor":
+                            System.out.println("input: <CourseID> <TeacherID>");
+                            keyString = scanner.nextLine();
+                            add.addInstructor(keyString);
+                            break;
+                        case "addenrollment":
+                            System.out.println("input: <CourseID> <StudentID>");
+                            keyString = scanner.nextLine();
+                            add.addEnrollment(keyString);
+                            break;
+                        default:
+                            System.out.println("Invalid command. Please enter again.");
+                    }
+                    break;
                 case "delete":
                     System.out.println("Select an action: delstudent, delteacher, " +
                             "delcourse, delsession, delinstructor, delenrollment");
@@ -140,6 +176,7 @@ public class Main {
                     return;
                 default:
                     System.out.println("Invalid command. Please enter again.");
-            }}
+            }
         }
+    }
 }
