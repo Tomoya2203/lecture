@@ -16,6 +16,9 @@ public class Edit {
             int rs = stmt.executeUpdate(
                     "UPDATE Students SET Name = '" + name + "' WHERE StudentID = " + StudentID
             );
+            if (rs == 0){
+                System.out.println("Student not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -26,6 +29,9 @@ public class Edit {
             int rs = stmt.executeUpdate(
                     "UPDATE Teachers SET Name = '" + Name + "' WHERE TeacherID = " + TeacherID
             );
+            if (rs == 0){
+                System.out.println("Teacher not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -36,6 +42,9 @@ public class Edit {
             int rs = stmt.executeUpdate(
                 "UPDATE Courses SET Name = '" + Name + "' WHERE CourseID = " + CourseID
             );
+            if (rs == 0){
+                System.out.println("Course not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -47,6 +56,9 @@ public class Edit {
                     "UPDATE Sessions SET Location = '" + Location + "', Time = '" + Time
                             + "', CourseID = " + CourseID + " WHERE SessionID = " + SessionID
             );
+            if (rs == 0){
+                System.out.println("Session not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }

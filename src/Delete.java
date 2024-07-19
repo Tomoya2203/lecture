@@ -16,6 +16,9 @@ public class Delete {
             int rs = stmt.executeUpdate(
                     "DELETE FROM Students WHERE StudentID = " + StudentID
             );
+            if (rs == 0){
+                System.out.println("Student not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -26,6 +29,9 @@ public class Delete {
             int rs = stmt.executeUpdate(
                     "DELETE FROM Teachers WHERE TeacherID = " + TeacherID
             );
+            if (rs == 0){
+                System.out.println("Teacher not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -36,6 +42,9 @@ public class Delete {
             int rs = stmt.executeUpdate(
                     "DELETE FROM Courses WHERE CourseID = " + CourseID
             );
+            if (rs == 0){
+                System.out.println("Course not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -46,6 +55,9 @@ public class Delete {
             int rs = stmt.executeUpdate(
                     "DELETE FROM Sessions WHERE SessionID = " + SessionID
             );
+            if (rs == 0){
+                System.out.println("Session not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -56,6 +68,9 @@ public class Delete {
             int rs = stmt.executeUpdate(
                     "DELETE FROM Instructors WHERE CourseID = " + CourseID + " AND TeacherID = " + TeacherID
             );
+            if (rs == 0){
+                System.out.println("Instructor not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -66,6 +81,9 @@ public class Delete {
             int rs = stmt.executeUpdate(
                     "DELETE FROM Enrollments WHERE StudentID = " + StudentID + " AND CourseID = " + CourseID
             );
+            if (rs == 0){
+                System.out.println("Enrollment not found");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
