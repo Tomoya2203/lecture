@@ -18,7 +18,7 @@ public class Add {
     }
 
     public void addStudent(String key_string){
-        String[] key_list = key_string.split("[\s]+");
+        String[] key_list = key_string.split("[\\s]+");
         if (key_list.length != 1) {
             System.out.println("input correctly: <StudentName>");
             return;
@@ -48,7 +48,7 @@ public class Add {
     }
 
     public void addTeacher(String key_string){
-        String[] key_list = key_string.split("[\s]+");
+        String[] key_list = key_string.split("[\\s]+");
         if (key_list.length != 1) {
             System.out.println("input correctly: <TeacherName>");
             return;
@@ -78,7 +78,7 @@ public class Add {
     }
 
     public void addCourse(String key_string){
-        String[] key_list = key_string.split("[\s]+");
+        String[] key_list = key_string.split("[\\s]+");
         if (key_list.length != 1) {
             System.out.println("input correctly: <CourseName>");
             return;
@@ -108,7 +108,7 @@ public class Add {
     }
 
     public void addSession(String key_string){
-        String[] key_list = key_string.split("[\s]+");
+        String[] key_list = key_string.split("[\\s]+");
         if (key_list.length != 3) {
             System.out.println("input correctly: <CourseID> <Time> <Location>");
             return;
@@ -154,7 +154,7 @@ public class Add {
     }
 
     public void addInstructor(String key_string){
-        String[] key_list = key_string.split("[\s]+");
+        String[] key_list = key_string.split("[\\s]+");
         if (key_list.length != 2) {
             System.out.println("input correctly: <CourseID> <TeacherID>");
             return;
@@ -214,7 +214,7 @@ public class Add {
 
 
     public void addEnrollment(String key_string){
-        String[] key_list = key_string.split("[\s]+");
+        String[] key_list = key_string.split("[\\s]+");
         if (key_list.length != 2) {
             System.out.println("input correctly: <CourseID> <StudentID>");
             return;
