@@ -5,6 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JPanel;
 
 public class ShowDatabase {
 
@@ -24,16 +28,6 @@ public class ShowDatabase {
             System.out.println(e);
         }
     }
-
-//    public Database(String dbname){
-//        try{
-//            Class.forName("org.sqlite.JDBC");
-//            this.c = DriverManager.getConnection("jdbc:sqlite:" + dbname);
-//            this.stmt = c.createStatement();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//    }
 
     public void createTable(String tablename){
         try{
@@ -136,6 +130,103 @@ public class ShowDatabase {
         }
     }
     
+public JPanel ShowAll_GUI(String Table) {
+        JPanel panel = null;
+        try {
+            String query = "";
+            if (Table.equals("CourseInfo")) {
+                query = "SELECT Courses.CourseID, Courses.Name AS CourseName, Sessions.Time, Sessions.Location, " +
+                        "GROUP_CONCAT(Teachers.TeacherID) AS TeacherIDs, GROUP_CONCAT(Teachers.Name) AS TeacherNames " +
+                        "FROM Courses " +
+                        "JOIN Sessions ON Courses.CourseID = Sessions.CourseID " +
+                        "JOIN Instructors ON Courses.CourseID = Instructors.CourseID " +
+                        "JOIN Teachers ON Instructors.TeacherID = Teachers.TeacherID " +
+                        "GROUP BY Courses.CourseID, Sessions.SessionID";
+            } else {
+                query = "SELECT * FROM " + Table;
+            }
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            List<Object[]> data = new ArrayList<>();
+            String[] columnNames = null;
+
+            if (Table.equals("CourseInfo")) {
+                columnNames = new String[]{"CourseID", "CourseName", "Time", "Location", "TeacherIDs", "TeacherNames"};
+                while (rs.next()) {
+                    data.add(new Object[]{
+                            rs.getInt("CourseID"),
+                            rs.getString("CourseName"),
+                            rs.getInt("Time"),
+                            rs.getString("Location"),
+                            rs.getString("TeacherIDs"),
+                            rs.getString("TeacherNames")
+                    });
+                }
+            } else if (Table.equals("Students")) {
+                columnNames = new String[]{"StudentID", "Name"};
+                while (rs.next()) {
+                    data.add(new Object[]{
+                            rs.getInt("StudentID"),
+                            rs.getString("Name")
+                    });
+                }
+            } else if (Table.equals("Teachers")) {
+                columnNames = new String[]{"TeacherID", "Name"};
+                while (rs.next()) {
+                    data.add(new Object[]{
+                            rs.getInt("TeacherID"),
+                            rs.getString("Name")
+                    });
+                }
+            } else if (Table.equals("Courses")) {
+                columnNames = new String[]{"CourseID", "Name"};
+                while (rs.next()) {
+                    data.add(new Object[]{
+                            rs.getInt("CourseID"),
+                            rs.getString("Name")
+                    });
+                }
+            } else if (Table.equals("Sessions")) {
+                columnNames = new String[]{"SessionID", "CourseID", "Time", "Location"};
+                while (rs.next()) {
+                    data.add(new Object[]{
+                            rs.getInt("SessionID"),
+                            rs.getString("CourseID"),
+                            rs.getInt("Time"),
+                            rs.getString("Location")
+                    });
+                }
+            } else if (Table.equals("Enrollments")) {
+                columnNames = new String[]{"CourseID", "StudentID"};
+                while (rs.next()) {
+                    data.add(new Object[]{
+                            rs.getString("CourseID"),
+                            rs.getString("StudentID")
+                    });
+                }
+            } else if (Table.equals("Instructors")) {
+                columnNames = new String[]{"CourseID", "TeacherID"};
+                while (rs.next()) {
+                    data.add(new Object[]{
+                            rs.getString("CourseID"),
+                            rs.getString("TeacherID")
+                    });
+                }
+            }
+
+            rs.close();
+
+            if (columnNames != null) {
+                Object[][] dataArray = data.toArray(new Object[0][]);
+                panel = new ViewPage();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return panel;
+    }
+
      public void searchTable(String column, String searchValue, String Table) {
         try {
             String query;
@@ -294,40 +385,13 @@ public class ShowDatabase {
 
     public static void main(String[] args) {
         ShowDatabase db = new ShowDatabase();
-
-        String tablename = "table1";
-        //db.readTable(2,"Students");
-        //db.readTable(1,"Enrollments");
-
-        /* 
-        db.ShowAll("Sessions");
-        db.ShowAll("Teachers");
-        db.ShowAll("Instructors");
-        db.ShowAll("Courses");
-        db.ShowAll("Sessions");
-        db.ShowAll("Enrollments");
-        */
         String[] Table = {"CourseInfo","Students","Teachers","Courses","Instructors","Sessions","Enrollments"};
         for(int i=0;i<7;i++){
             System.out.println(Table[i]);
             db.ShowAll(Table[i]);
         }
-        //db.readCoursesTable();
+        
 
-
-
-//        db.createTable(tablename);
-//        for (int i = 1; i < 11; i++) {
-//            db.insertData(tablename, i,i*100 , "description " + i);
-//        }
-//
-//        db.updateTable(tablename, 1);
-//
-//        db.readTable(tablename);
-//
-//        db.dropTable(tablename);
-//
-//        db.closeConnection();
     }
 
 }

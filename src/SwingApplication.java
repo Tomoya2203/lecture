@@ -1,6 +1,5 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,7 +12,6 @@ public class SwingApplication {
     private Add add;
     private Edit edit;
     private Delete delete;
-
 
     public SwingApplication() {
         try {
@@ -39,7 +37,8 @@ public class SwingApplication {
             e -> cardLayout.show(mainPanel, "Add"),
             e -> cardLayout.show(mainPanel, "Delete")
         );
-        ViewPage viewPage = new ViewPage();
+        ViewPage viewPage = new ViewPage(conn);
+
         EditPage editPage = new EditPage(edit);
         AddPage addPage = new AddPage(add);
         DeletePage deletePage = new DeletePage(delete);
