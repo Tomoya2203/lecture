@@ -46,8 +46,8 @@ public class ShowDatabase {
         try{
             ResultSet rs = stmt.executeQuery("SELECT * FROM " + Table +" WHERE StudentID = " + StudentID);
             while (rs.next()) {
-                String name = rs.getString("Name"); // get data of value col.
-                System.out.println("id:" + StudentID + ", name:" + name); // print out the data.
+                String name = rs.getString("Name");
+                System.out.println("id:" + StudentID + ", name:" + name);
             }
             rs.close();
         }catch (SQLException e){
@@ -218,7 +218,6 @@ public JPanel ShowAll_GUI(String Table) {
             rs.close();
 
             if (columnNames != null) {
-                Object[][] dataArray = data.toArray(new Object[0][]);
                 panel = new ViewPage(c);
             }
         } catch (SQLException e) {
@@ -246,10 +245,8 @@ public JPanel ShowAll_GUI(String Table) {
             PreparedStatement pstmt = c.prepareStatement(query);
             pstmt.setString(1, "%" + searchValue + "%");
 
-            // クエリの実行
             ResultSet rs = pstmt.executeQuery();
 
-            // 結果セットの処理
             if (Table.equals("Courses")) {
                 while (rs.next()) {
                     int CourseID = rs.getInt("CourseID");
@@ -300,7 +297,6 @@ public JPanel ShowAll_GUI(String Table) {
                 }
             }
 
-            // リソースのクローズ
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
@@ -318,8 +314,8 @@ public JPanel ShowAll_GUI(String Table) {
                             "JOIN Sessions ON Courses.CourseID = Sessions.CourseID"
             );
             while (rs.next()) {
-                String name = rs.getString("Name"); // get data of value col.
-                System.out.println("id:" + ", name:" + name); // print out the data.
+                String name = rs.getString("Name");
+                System.out.println("id:" + ", name:" + name);
             }
             rs.close();
         }catch (SQLException e){
@@ -382,16 +378,4 @@ public JPanel ShowAll_GUI(String Table) {
             System.out.println(ex.getMessage());
         }
     }
-
-    public static void main(String[] args) {
-        ShowDatabase db = new ShowDatabase();
-        String[] Table = {"CourseInfo","Students","Teachers","Courses","Instructors","Sessions","Enrollments"};
-        for(int i=0;i<7;i++){
-            System.out.println(Table[i]);
-            db.ShowAll(Table[i]);
-        }
-
-
-    }
-
 }
