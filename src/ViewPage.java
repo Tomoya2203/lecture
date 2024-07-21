@@ -16,7 +16,6 @@ public class ViewPage extends JPanel {
         this.conn = conn;
         setLayout(new BorderLayout());
 
-        // Create button panel
         JPanel buttonPanel = new JPanel(new GridLayout(7, 1));
         JButton courseInfoButton = new JButton("View Course Info");
         JButton studentsButton = new JButton("View Students");
@@ -25,7 +24,7 @@ public class ViewPage extends JPanel {
         JButton sessionsButton = new JButton("View Sessions");
         JButton enrollmentsButton = new JButton("View Enrollments");
         JButton instructorsButton = new JButton("View Instructors");
-        
+
         buttonPanel.add(courseInfoButton);
         buttonPanel.add(studentsButton);
         buttonPanel.add(teachersButton);
@@ -34,11 +33,9 @@ public class ViewPage extends JPanel {
         buttonPanel.add(enrollmentsButton);
         buttonPanel.add(instructorsButton);
 
-        // Create table panel with CardLayout
         cardLayout = new CardLayout();
         tablePanel = new JPanel(cardLayout);
 
-        // Add table panels
         tablePanel.add(createTablePanel("CourseInfo"), "CourseInfo");
         tablePanel.add(createTablePanel("Students"), "Students");
         tablePanel.add(createTablePanel("Teachers"), "Teachers");
@@ -47,7 +44,6 @@ public class ViewPage extends JPanel {
         tablePanel.add(createTablePanel("Enrollments"), "Enrollments");
         tablePanel.add(createTablePanel("Instructors"), "Instructors");
 
-        // Set button actions
         courseInfoButton.addActionListener(e -> switchTable("CourseInfo"));
         studentsButton.addActionListener(e -> switchTable("Students"));
         teachersButton.addActionListener(e -> switchTable("Teachers"));
@@ -56,7 +52,6 @@ public class ViewPage extends JPanel {
         enrollmentsButton.addActionListener(e -> switchTable("Enrollments"));
         instructorsButton.addActionListener(e -> switchTable("Instructors"));
 
-        // Create search panel
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         searchField = new JTextField(20);
         JButton searchButton = new JButton("Search");
@@ -85,12 +80,12 @@ public class ViewPage extends JPanel {
                 return false;
             }
         };
-        
+
         Object[][] data = getTableData(tableName);
         for (Object[] row : data) {
             model.addRow(row);
         }
-        
+
         return model;
     }
 
@@ -180,7 +175,7 @@ public class ViewPage extends JPanel {
     private void performSearch() {
         String searchText = searchField.getText().toLowerCase();
         Component currentTable = tablePanel.getComponent(0);
-        
+
         for (Component comp : tablePanel.getComponents()) {
             if (comp.isVisible()) {
                 currentTable = comp;

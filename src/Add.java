@@ -6,7 +6,6 @@ import java.sql.SQLException;
 public class Add {
 
     Connection conn = null;
-    // PreparedStatement pstmt = null;
     PreparedStatement pstmt2 = null;
     PreparedStatement pstmt3 = null;
     ResultSet rs = null;

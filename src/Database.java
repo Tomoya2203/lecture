@@ -24,16 +24,6 @@ public class Database {
         }
     }
 
-//    public Database(String dbname){
-//        try{
-//            Class.forName("org.sqlite.JDBC");
-//            this.c = DriverManager.getConnection("jdbc:sqlite:" + dbname);
-//            this.stmt = c.createStatement();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//    }
-
     public void createTable(String tablename){
         try{
             this.stmt.executeQuery(
@@ -51,8 +41,8 @@ public class Database {
         try{
             ResultSet rs = stmt.executeQuery("SELECT * FROM Students WHERE StudentID = " + StudentID);
             while (rs.next()) {
-                String name = rs.getString("Name"); // get data of value col.
-                System.out.println("id:" + StudentID + ", name:" + name); // print out the data.
+                String name = rs.getString("Name");
+                System.out.println("id:" + StudentID + ", name:" + name);
             }
             rs.close();
         }catch (SQLException e){
@@ -69,8 +59,8 @@ public class Database {
                             "JOIN Sessions ON Courses.CourseID = Sessions.CourseID"
             );
             while (rs.next()) {
-                String name = rs.getString("Name"); // get data of value col.
-                System.out.println("id:" + ", name:" + name); // print out the data.
+                String name = rs.getString("Name");
+                System.out.println("id:" + ", name:" + name);
             }
             rs.close();
         }catch (SQLException e){
@@ -133,24 +123,4 @@ public class Database {
             System.out.println(ex.getMessage());
         }
     }
-
-    public static void main(String[] args) {
-        Database db = new Database();
-
-        String tablename = "table1";
-        db.readStudentTable(2);
-//        db.createTable(tablename);
-//        for (int i = 1; i < 11; i++) {
-//            db.insertData(tablename, i,i*100 , "description " + i);
-//        }
-//
-//        db.updateTable(tablename, 1);
-//
-//        db.readTable(tablename);
-//
-//        db.dropTable(tablename);
-//
-//        db.closeConnection();
-    }
-
 }

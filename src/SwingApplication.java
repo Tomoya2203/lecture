@@ -26,11 +26,9 @@ public class SwingApplication {
     }
 
     public Component createComponents() {
-        // メインパネルとカードレイアウトを作成
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        // 各ページをインスタンス化
         HomePage homePage = new HomePage(
             e -> cardLayout.show(mainPanel, "View"),
             e -> cardLayout.show(mainPanel, "Edit"),
@@ -43,14 +41,12 @@ public class SwingApplication {
         AddPage addPage = new AddPage(add);
         DeletePage deletePage = new DeletePage(delete);
 
-        // メインパネルに各ページを追加
         mainPanel.add(homePage, "Home");
         mainPanel.add(viewPage, "View");
         mainPanel.add(editPage, "Edit");
         mainPanel.add(addPage, "Add");
         mainPanel.add(deletePage, "Delete");
 
-        // ボタンパネル
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4));
         JButton homeButton = new JButton("Home");
         JButton viewButton = new JButton("View");
@@ -58,7 +54,6 @@ public class SwingApplication {
         JButton addButton = new JButton("Add");
         JButton deleteButton = new JButton("Delete");
 
-        // 各ボタンにアクションリスナーを設定
         homeButton.addActionListener(e -> cardLayout.show(mainPanel, "Home"));
         viewButton.addActionListener(e -> cardLayout.show(mainPanel, "View"));
         editButton.addActionListener(e -> cardLayout.show(mainPanel, "Edit"));
@@ -71,7 +66,6 @@ public class SwingApplication {
         buttonPanel.add(addButton);
         buttonPanel.add(deleteButton);
 
-        // コンテナパネルを作成して、ボタンパネルとメインパネルを配置
         JPanel containerPanel = new JPanel(new BorderLayout());
         containerPanel.add(buttonPanel, BorderLayout.NORTH);
         containerPanel.add(mainPanel, BorderLayout.CENTER);

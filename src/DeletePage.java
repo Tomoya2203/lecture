@@ -47,7 +47,6 @@ public class DeletePage extends JPanel {
         add(inputPanel, BorderLayout.CENTER);
     }
 
-    // Student Panel
     private JPanel createStudentPanel() {
         JPanel panel = new JPanel(new GridLayout(2, 2));
         panel.add(new JLabel("Student ID:"));
@@ -70,7 +69,6 @@ public class DeletePage extends JPanel {
         return panel;
     }
 
-    // Teacher Panel
     private JPanel createTeacherPanel() {
         JPanel panel = new JPanel(new GridLayout(2, 2));
         panel.add(new JLabel("Teacher ID:"));
@@ -93,7 +91,6 @@ public class DeletePage extends JPanel {
         return panel;
     }
 
-    // Course Panel
     private JPanel createCoursePanel() {
         JPanel panel = new JPanel(new GridLayout(2, 2));
         panel.add(new JLabel("Course ID:"));
@@ -116,7 +113,6 @@ public class DeletePage extends JPanel {
         return panel;
     }
 
-    // Session Panel
     private JPanel createSessionPanel() {
         JPanel panel = new JPanel(new GridLayout(2, 2));
         panel.add(new JLabel("Session ID:"));
@@ -139,7 +135,6 @@ public class DeletePage extends JPanel {
         return panel;
     }
 
-    // Instructor Panel
     private JPanel createInstructorPanel() {
         JPanel panel = new JPanel(new GridLayout(3, 2));
         panel.add(new JLabel("Course ID:"));
@@ -166,7 +161,6 @@ public class DeletePage extends JPanel {
         return panel;
     }
 
-    // Enrollment Panel
     private JPanel createEnrollmentPanel() {
         JPanel panel = new JPanel(new GridLayout(3, 2));
         panel.add(new JLabel("Course ID:"));

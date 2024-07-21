@@ -3,7 +3,7 @@ INSERT INTO Courses (Name) VALUES ('Programming 1');
 INSERT INTO Courses (Name) VALUES ('Database management');
 
 -- Teachers
-INSERT INTO Teachers (Name) VALUES ('Example Name);
+INSERT INTO Teachers (Name) VALUES ('Example Name');
 INSERT INTO Teachers (Name) VALUES ('Name Eg');
 
 -- Students

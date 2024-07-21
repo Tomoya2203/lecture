@@ -69,9 +69,9 @@ public class ShowDatabase {
             } else {
                 query = "SELECT * FROM " + Table;
             }
-    
+
             ResultSet rs = stmt.executeQuery(query);
-    
+
             if (Table.equals("CourseInfo")) {
                 while (rs.next()) {
                     int CourseID = rs.getInt("CourseID");
@@ -80,7 +80,7 @@ public class ShowDatabase {
                     String Location = rs.getString("Location");
                     String TeacherIDs = rs.getString("TeacherIDs");
                     String TeacherNames = rs.getString("TeacherNames");
-    
+
                     System.out.println("CourseID: " + CourseID + ", CourseName: " + CourseName +
                             ", Time: " + Time + ", Location: " + Location +
                             ", TeacherIDs: " + TeacherIDs + ", TeacherNames: " + TeacherNames);
@@ -129,7 +129,7 @@ public class ShowDatabase {
             e.printStackTrace();
         }
     }
-    
+
 public JPanel ShowAll_GUI(String Table) {
         JPanel panel = null;
         try {
@@ -219,7 +219,7 @@ public JPanel ShowAll_GUI(String Table) {
 
             if (columnNames != null) {
                 Object[][] dataArray = data.toArray(new Object[0][]);
-                panel = new ViewPage();
+                panel = new ViewPage(c);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -307,7 +307,7 @@ public JPanel ShowAll_GUI(String Table) {
             e.printStackTrace();
         }
     }
-        
+
 
     public void readCoursesTable(){
         try{
@@ -390,7 +390,7 @@ public JPanel ShowAll_GUI(String Table) {
             System.out.println(Table[i]);
             db.ShowAll(Table[i]);
         }
-        
+
 
     }
 

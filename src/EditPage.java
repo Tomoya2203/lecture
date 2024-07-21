@@ -39,7 +39,6 @@ public class EditPage extends JPanel {
         add(inputPanel, BorderLayout.CENTER);
     }
 
-    // Student Panel
     private JPanel createStudentPanel() {
         JPanel panel = new JPanel(new GridLayout(3, 2));
         panel.add(new JLabel("Student ID:"));
@@ -66,7 +65,6 @@ public class EditPage extends JPanel {
         return panel;
     }
 
-    // Teacher Panel
     private JPanel createTeacherPanel() {
         JPanel panel = new JPanel(new GridLayout(3, 2));
         panel.add(new JLabel("Teacher ID:"));
@@ -93,7 +91,6 @@ public class EditPage extends JPanel {
         return panel;
     }
 
-    // Course Panel
     private JPanel createCoursePanel() {
         JPanel panel = new JPanel(new GridLayout(3, 2));
         panel.add(new JLabel("Course ID:"));
@@ -120,7 +117,6 @@ public class EditPage extends JPanel {
         return panel;
     }
 
-    // Session Panel
     private JPanel createSessionPanel() {
         JPanel panel = new JPanel(new GridLayout(5, 2));
         panel.add(new JLabel("Session ID:"));

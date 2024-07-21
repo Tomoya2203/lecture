@@ -12,7 +12,6 @@ public class AddPage extends JPanel {
 
         setLayout(new BorderLayout());
 
-        // ボタンパネルを作成
         JPanel buttonPanel = new JPanel(new GridLayout(6, 1));
         JButton studentButton = new JButton("Add Student");
         JButton teacherButton = new JButton("Add Teacher");
@@ -27,11 +26,9 @@ public class AddPage extends JPanel {
         buttonPanel.add(instructorButton);
         buttonPanel.add(enrollmentButton);
 
-        // 入力パネルを作成
         cardLayout = new CardLayout();
         inputPanel = new JPanel(cardLayout);
 
-        // 各操作に対応する入力フィールドを含むパネルを作成
         inputPanel.add(createStudentPanel(), "Student");
         inputPanel.add(createTeacherPanel(), "Teacher");
         inputPanel.add(createCoursePanel(), "Course");
@@ -39,7 +36,6 @@ public class AddPage extends JPanel {
         inputPanel.add(createInstructorPanel(), "Instructor");
         inputPanel.add(createEnrollmentPanel(), "Enrollment");
 
-        // ボタンのアクションリスナーを設定
         studentButton.addActionListener(e -> cardLayout.show(inputPanel, "Student"));
         teacherButton.addActionListener(e -> cardLayout.show(inputPanel, "Teacher"));
         courseButton.addActionListener(e -> cardLayout.show(inputPanel, "Course"));
@@ -50,14 +46,13 @@ public class AddPage extends JPanel {
         add(buttonPanel, BorderLayout.WEST);
         add(inputPanel, BorderLayout.CENTER);
     }
-    // Student Panel
     private JPanel createStudentPanel() {
         JPanel panel = new JPanel(new GridLayout(2, 2));
         panel.add(new JLabel("Student Name:"));
         JTextField studentNameField = new JTextField();
         panel.add(studentNameField);
         JButton addButton = new JButton("Add");
-        panel.add(new JLabel());  // Empty cell
+        panel.add(new JLabel());
         panel.add(addButton);
 
         addButton.addActionListener(e -> {
@@ -73,14 +68,14 @@ public class AddPage extends JPanel {
         return panel;
     }
 
-    // Teacher Panel
+
     private JPanel createTeacherPanel() {
         JPanel panel = new JPanel(new GridLayout(2, 2));
         panel.add(new JLabel("Teacher Name:"));
         JTextField teacherNameField = new JTextField();
         panel.add(teacherNameField);
         JButton addButton = new JButton("Add");
-        panel.add(new JLabel());  // Empty cell
+        panel.add(new JLabel());
         panel.add(addButton);
 
         addButton.addActionListener(e -> {
@@ -96,14 +91,13 @@ public class AddPage extends JPanel {
         return panel;
     }
 
-    // Course Panel
     private JPanel createCoursePanel() {
         JPanel panel = new JPanel(new GridLayout(2, 2));
         panel.add(new JLabel("Course Name:"));
         JTextField courseNameField = new JTextField();
         panel.add(courseNameField);
         JButton addButton = new JButton("Add");
-        panel.add(new JLabel());  // Empty cell
+        panel.add(new JLabel());
         panel.add(addButton);
 
         addButton.addActionListener(e -> {
@@ -119,7 +113,6 @@ public class AddPage extends JPanel {
         return panel;
     }
 
-    // Session Panel
     private JPanel createSessionPanel() {
         JPanel panel = new JPanel(new GridLayout(4, 2));
         panel.add(new JLabel("Course ID:"));
@@ -132,7 +125,7 @@ public class AddPage extends JPanel {
         JTextField locationField = new JTextField();
         panel.add(locationField);
         JButton addButton = new JButton("Add");
-        panel.add(new JLabel());  // Empty cell
+        panel.add(new JLabel());
         panel.add(addButton);
 
         addButton.addActionListener(e -> {
@@ -150,7 +143,7 @@ public class AddPage extends JPanel {
         return panel;
     }
 
-    // Instructor Panel
+
     private JPanel createInstructorPanel() {
         JPanel panel = new JPanel(new GridLayout(3, 2));
         panel.add(new JLabel("Course ID:"));
@@ -160,7 +153,7 @@ public class AddPage extends JPanel {
         JTextField teacherIdField = new JTextField();
         panel.add(teacherIdField);
         JButton addButton = new JButton("Add");
-        panel.add(new JLabel());  // Empty cell
+        panel.add(new JLabel());
         panel.add(addButton);
 
         addButton.addActionListener(e -> {
@@ -177,7 +170,6 @@ public class AddPage extends JPanel {
         return panel;
     }
 
-    // Enrollment Panel
     private JPanel createEnrollmentPanel() {
         JPanel panel = new JPanel(new GridLayout(3, 2));
         panel.add(new JLabel("Course ID:"));
@@ -187,7 +179,7 @@ public class AddPage extends JPanel {
         JTextField studentIdField = new JTextField();
         panel.add(studentIdField);
         JButton addButton = new JButton("Add");
-        panel.add(new JLabel());  // Empty cell
+        panel.add(new JLabel());
         panel.add(addButton);
 
         addButton.addActionListener(e -> {
