@@ -168,6 +168,8 @@ public class ViewPage extends JPanel {
     }
 
     private void switchTable(String tableName) {
+        JPanel newPanel = createTablePanel(tableName);
+        tablePanel.add(newPanel, tableName);
         cardLayout.show(tablePanel, tableName);
         searchField.setText("");
     }

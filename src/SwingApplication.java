@@ -74,7 +74,7 @@ public class SwingApplication {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("講義管理システム");
+        JFrame frame = new JFrame("LMS");
         SwingApplication app = new SwingApplication();
         Component contents = app.createComponents();
         frame.getContentPane().add(contents, BorderLayout.CENTER);

@@ -130,7 +130,7 @@ public class ShowDatabase {
         }
     }
 
-public JPanel ShowAll_GUI(String Table) {
+    public JPanel ShowAll_GUI(String Table) {
         JPanel panel = null;
         try {
             String query = "";
@@ -226,7 +226,7 @@ public JPanel ShowAll_GUI(String Table) {
         return panel;
     }
 
-     public void searchTable(String column, String searchValue, String Table) {
+    public void searchTable(String column, String searchValue, String Table) {
         try {
             String query;
             if (Table.equals("CourseInfo")) {
