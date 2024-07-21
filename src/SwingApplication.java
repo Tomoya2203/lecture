@@ -1,6 +1,5 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +10,6 @@ public class SwingApplication {
     private final String DB_NAME = "../lib/sample.db";
     private Connection conn;
     private Add add;
-
 
     public SwingApplication() {
         try {
@@ -34,7 +32,7 @@ public class SwingApplication {
             e -> cardLayout.show(mainPanel, "Edit"),
             e -> cardLayout.show(mainPanel, "Add")
         );
-        ViewPage viewPage = new ViewPage();
+        ViewPage viewPage = new ViewPage(conn);
         EditPage editPage = new EditPage();
         AddPage addPage = new AddPage(add);
 
